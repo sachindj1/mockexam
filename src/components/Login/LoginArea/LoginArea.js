@@ -24,8 +24,14 @@ const LoginArea = () => {
         try {
           const response = await axios.post('http://localhost:5000/api/user/login', { email, password });
           console.log(response.data); 
+
           
-          navigate("/userlandingpage")
+          localStorage.setItem('username', JSON.stringify(response.data.user.user_name
+            ));
+
+            localStorage.setItem('userID', response.data.user.user_id );
+
+          navigate("/")
           // Success message
           // Handle successful login, such as redirecting to a different page
         } catch (error) {

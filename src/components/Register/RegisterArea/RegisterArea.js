@@ -39,6 +39,9 @@ const  RegisterArea = () => {
                 })
 
                 console.log(response.data);
+                if(response.data){
+                    navigate('/login');
+                }
 
              }catch(err){
                      console.log("error in fetching inserting user" , err)
