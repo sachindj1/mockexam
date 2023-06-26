@@ -6,6 +6,7 @@ import Register from './components/Register/Register';
 import UserLandingPage from './components/UserLandingPage/UserLandingPage';
 import ExamPage from './components/ExamPage/ExamPage';
 import ResultPage from './components/ResultPage/ResultPage';
+import StartedExamPage from './components/StartedExamPage/StartedExamPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path='/userlandingpage' element={ <UserLandingPage />} />
       <Route path='/exampage' element={ <ExamPage />} />
       <Route path='/resultpage' element={ <ResultPage />} />
+      <Route path='/startedexam' element={ <StartedExamPage />} />
     </Routes>
    </>
   );
