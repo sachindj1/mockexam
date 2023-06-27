@@ -6,6 +6,10 @@ function StartedExamPageArea({ subjectid }) {
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(-1);
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
+
+
 
   useEffect(() => {
     console.log("222>>>>>", subjectid);
@@ -56,6 +60,18 @@ function StartedExamPageArea({ subjectid }) {
     }
   };
 
+  const handleOptionSelect = (optionIndex) => {
+    const selectedOption = questions[currentQuestionIndex].options[optionIndex];
+  const correctAnswer = questions[currentQuestionIndex].answer;
+
+  setSelectedOptionIndex(optionIndex);
+  setIsAnswerCorrect(selectedOption === correctAnswer);
+    console.log("is answer correct >>>",isAnswerCorrect)
+  // Move to the next question
+  handleNext();
+  };
+  
+
   return (
     <>
       <div style={{ textAlign: "right" }}>Exam Time: <button>{seconds}</button></div>
@@ -68,7 +84,15 @@ function StartedExamPageArea({ subjectid }) {
 }</p>
         <ul>
           {questions[currentQuestionIndex].options.map((option, index) => (
-            <li key={index}>{option}</li>
+           <li>
+           <button
+            key={index}
+            className={index === selectedOptionIndex ? "selected-option" : ""}
+            onClick={() => handleOptionSelect(index)}
+          >
+            {option}
+          </button>
+          </li>
           ))}
         </ul>
         </>
