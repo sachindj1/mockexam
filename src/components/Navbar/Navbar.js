@@ -27,7 +27,7 @@ const handleLogout = () => {
 
   return (
     <div style={navbarStyle}>
-      <div style={logoStyle} onClick={handleHome}>Logo</div>
+      <div style={logoStyle} onClick={handleHome}></div>
       {user &&<button style={logoutButtonStyle} onClick={handleLogout}>Logout</button>}
     </div>
   );
@@ -42,8 +42,11 @@ const navbarStyle = {
 };
 
 const logoStyle = {
-  fontWeight: 'bold',
-  fontSize: '20px',
+  backgroundImage: "url(https://www.pngitem.com/pimgs/m/350-3500151_newstu-online-exam-portal-logo-png-transparent-png.png)",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  width: "80px",
+  height: "80px",
 };
 
 const logoutButtonStyle = {

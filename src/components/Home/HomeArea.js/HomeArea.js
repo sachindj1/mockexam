@@ -49,14 +49,16 @@ function HomeArea() {
     return (
         <>
         {user ? ( <div style={containerStyle}>
-          <h1>Welcome {userName}</h1> 
-          <div style={buttonContainerStyle}>
+          <image ></image>
+          <h1 style={{color:"blue"}}>Welcome {userName}</h1> 
+          <div style={buttonContainerStyle} >
              <button style={buttonStyle} onClick={handleUserLandingPage}>Select course</button>
           </div>
           </div>) : (
 
               <div style={containerStyle}>
-              <h1>Welcome to the Home Page</h1>
+             <div> <h1>Welcome to NewStu</h1>
+              <h5 style={{textAlign:"center"}}>A place to test your knowledge</h5></div>
               <div style={buttonContainerStyle}>
              <button style={buttonStyle} onClick={handleRegister}>Register</button>
               <button style={buttonStyle}  onClick={handleLogin}>Login</button> 
@@ -77,6 +79,12 @@ function HomeArea() {
       alignItems: 'center',
       justifyContent: 'center',
       minHeight: '100vh',
+      backgroundColor: '#f2f2f2',
+      padding: '20px',
+      borderRadius: '10px',
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+      backgroundImage: 'url("https://suvidhasoft.com/images/services/exam.png")',
+      backgroundSize: 'cover',
     };
     
     const buttonContainerStyle = {
@@ -84,7 +92,7 @@ function HomeArea() {
     };
     
     const buttonStyle = {
-      backgroundColor: '#f2f2f2',
+      backgroundColor: 'green',
       color: '#333',
       padding: '10px 20px',
       border: 'none',

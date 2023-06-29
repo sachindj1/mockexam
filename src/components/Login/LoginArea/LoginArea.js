@@ -57,7 +57,7 @@ const LoginArea = () => {
       <h2>Login</h2>
       <form style={formStyle} onSubmit={handleSubmit}>
         <div>
-          <label>Email:</label>
+          <label>Email  :  </label>
           <input
             type="email"
             value={email}
@@ -83,8 +83,10 @@ const LoginArea = () => {
 const containerStyle = {
   display: 'flex',
   flexDirection: 'column',
+  backgroundColor: '#87CEEB',
   alignItems: 'center',
   justifyContent: 'center',
+  marginBottom : "20px",
   minHeight: '100vh',
   border: '5px'
 };
@@ -94,6 +96,8 @@ const formStyle = {
   flexDirection: 'column',
   alignItems: 'center',
   marginTop: '20px',
+ // marginBottom : "20px",
+  
 };
 
 const buttonStyle = {

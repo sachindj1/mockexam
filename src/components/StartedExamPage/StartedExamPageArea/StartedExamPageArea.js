@@ -10,6 +10,10 @@ function StartedExamPageArea({ subjectid }) {
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const [isAnswerCorrect, setIsAnswerCorrect] = useState([]);
 
+
+
+  const questionNo = currentQuestionIndex + 1 ;
+
   useEffect(() => {
     const interval = setInterval(() => {
       setSeconds((prevSeconds) => prevSeconds + 1);
@@ -19,6 +23,10 @@ function StartedExamPageArea({ subjectid }) {
       clearInterval(interval);
     };
   }, []);
+
+  // to display time in minutes 
+  const minutes = Math.floor(seconds / 60);
+const displaySeconds = seconds % 60;
 
   useEffect(() => {
     const fetchQuestion = async () => {
@@ -74,20 +82,30 @@ function StartedExamPageArea({ subjectid }) {
     updatedIsAnswerCorrect[currentQuestionIndex] = selectedOption === correctAnswer;
     setIsAnswerCorrect(updatedIsAnswerCorrect);
   };
-  
+
+  // Exam will be submitted automatically at 10 minutes 
+  useEffect(()=>{
+
+    if(minutes==10){
+      handleSubmit();
+    }
+  })
 
   return (
-    <>
-      <div style={{ textAlign: "right" }}>Exam Time: <button>{seconds}</button></div>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "80vh" }}>
+      <div style={{ flex: 1 }}>
+    <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}>
+      <div style={{ textAlign: "right" }}>  Exam Time: <button>{minutes} : {displaySeconds}</button></div>
       <div style={{ textAlign: "end" }}><button style={{ textAlign: "right", backgroundColor: "red" }} onClick={handleCancel}>Cancel</button></div>
       <div style={{ textAlign: "end" }}><button style={{ textAlign: "right", backgroundColor: "red" }} onClick={handleSubmit}>Submit</button></div>
-
+      </div>
       {questions.length > 0 && (
         <>
-          <p key={questions[currentQuestionIndex].question_id}>{questions[currentQuestionIndex].question_text}</p>
+           
+          <p key={questions[currentQuestionIndex].question_id} style={{marginBottom:"20px"}}>Q.{questionNo} {questions[currentQuestionIndex].question_text}</p>
           <ul>
             {questions[currentQuestionIndex].options.map((option, index) => (
-              <li key={index}>
+              <li key={index} style={{marginBottom:"10px"}}>
                 <button
                   onClick={() => handleOptionSelect(index)}
                   style={{ backgroundColor: selectedOptions[currentQuestionIndex] === index ? 'green' : 'transparent' }}
@@ -99,14 +117,14 @@ function StartedExamPageArea({ subjectid }) {
           </ul>
         </>
       )}
-
-      <div style={{ textAlign: "left" }}>
-        <button style={{ textAlign: "left", backgroundColor: "green" }} onClick={handlePrevious}>Previous Question</button>
+     </div>
+      <div style={{  display: "flex", justifyContent: "space-between"  }}>
+        
+        <button style={{  backgroundColor: "green" }} onClick={handlePrevious}>Previous Question</button>
+        <button style={{  backgroundColor: "green" }} onClick={handleNext}>Next Question</button>
       </div>
-      <div style={{ textAlign: "right" }}>
-        <button style={{ textAlign: "right", backgroundColor: "green" }} onClick={handleNext}>Next Question</button>
-      </div>
-    </>
+     
+    </div>
   );
 }
 

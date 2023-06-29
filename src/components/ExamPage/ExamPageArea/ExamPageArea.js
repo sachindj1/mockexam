@@ -55,6 +55,7 @@ const containerStyle = {
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: '100vh',
+    backgroundColor: '#87CEEB',
   };
   
   const buttonStyle = {
